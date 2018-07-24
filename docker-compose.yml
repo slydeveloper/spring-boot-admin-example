@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  example:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+        admin:
+          condition: service_healthy
+    container_name: spring_boot_admin_example
+  admin:
+    image: slydeveloper/spring-boot-admin
+    environment:
+      - SPRING_BOOT_ADMIN_TITLE=Custom Spring Boot Admin title
+    # - SPRING_BOOT_ADMIN_USER_NAME=user
+    # - SPRING_BOOT_ADMIN_USER_PASSWORD=password
+    # - SPRING_BOOT_ADMIN_SECURITY_ENABLED=false
+    volumes:
+      - ./application-docker.properties:/opt/spring-boot-admin-docker/application-docker.properties
+    ports:
+      - 1111:1111
+    healthcheck:
+      test: "curl -sS http://localhost:1111/health"
+      interval: 1s
+      timeout: 60s
+      retries: 120
+    container_name: spring_boot_admin_docker
