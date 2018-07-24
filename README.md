@@ -1,6 +1,6 @@
 Spring Boot Admin Docker Example
 ================================
-Example usage of Docker image `slydeveloper/spring-boot-admin`
+Example usage of Docker image `slydeveloper/spring-boot-admin` with Spring Boot Admin client.
 
 Links
 -----
